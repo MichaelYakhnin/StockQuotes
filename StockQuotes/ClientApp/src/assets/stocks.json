@@ -1,0 +1,27 @@
+[ {
+    "symbol" : "SPY",
+    "name" : "SPDR S&P 500",
+    "price" : 312.24,
+    "exchange" : "NYSE Arca"
+  }, {
+    "symbol" : "CMCSA",
+    "name" : "Comcast Corporation Class A Common Stock",
+    "price" : 39.4,
+    "exchange" : "Nasdaq Global Select"
+  }, {
+    "symbol" : "KMI",
+    "name" : "Kinder Morgan Inc.",
+    "price" : 15.835,
+    "exchange" : "New York Stock Exchange"
+  }, {
+    "symbol" : "INTC",
+    "name" : "Intel Corporation",
+    "price" : 60.49,
+    "exchange" : "Nasdaq Global Select"
+  }, {
+    "symbol" : "MU",
+    "name" : "Micron Technology Inc.",
+    "price" : 50.86,
+    "exchange" : "Nasdaq Global Select"
+  }
+]
