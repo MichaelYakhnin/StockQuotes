@@ -16,7 +16,7 @@ namespace StockQuotes.Controllers
     public class StocksQuotesController : ControllerBase
     {
         private readonly IHttpClientFactory _clientFactory;
-        private const string ApiKey = "788ffbf057dad1fb71efeb1899276ff0";
+        private const string ApiKey = "4b0459a9771c8df7a07163edc97e426f";
 
         public StocksQuotesController(IHttpClientFactory clientFactory)
         {
