@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StockService } from '../services/stock.service';
+import { EventBusService } from '../services/event-bus.service';
 
 @Component({
   selector: 'app-stock-list',
@@ -11,7 +11,10 @@ import { StockService } from '../services/stock.service';
 export class StockListComponent implements OnInit {
   rows = [];
   columns: any[];
-  constructor(private router: Router, private stockService: StockService, private spinner: NgxSpinnerService) { }
+  
+  constructor(private stockService: StockService,
+    private eventBusService: EventBusService,
+     private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.columns = [
@@ -28,7 +31,7 @@ export class StockListComponent implements OnInit {
   }
   onActive(event) {
     if (event.type === 'click') {
-      this.router.navigate(['/stock', event.row.symbol]);
+      this.eventBusService.onSymbolChanged(event.row.symbol);
     }
   }
 

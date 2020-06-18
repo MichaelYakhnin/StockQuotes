@@ -1,0 +1,25 @@
+.main-container{
+    display:flex;
+    margin: 25px auto;
+    padding: 0 50px;
+}
+.stocks-container{
+    max-width:600px;
+    width:100%;
+    padding-right: 10px;
+}
+.chart-container{
+    flex:1 0 auto;
+}
+@media only screen and (max-width: 1000px) {
+    .main-container{
+        display:block;  
+    }
+    .stocks-container{
+        max-width:100%;
+        margin-bottom: 10px;
+    }
+    .chart-container{
+        max-width:100%;
+    }
+  }

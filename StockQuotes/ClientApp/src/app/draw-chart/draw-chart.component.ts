@@ -1,6 +1,6 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { EventBusService } from '../services/event-bus.service';
 
 import {
   ChartComponent,
@@ -28,22 +28,25 @@ export interface ChartOptions {
   styleUrls: ['./draw-chart.component.css']
 })
 export class DrawChartComponent implements OnInit {
+  symbol: string;
   @ViewChild('chart', { static: false }) chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   candles: Candle[];
 
-  constructor(private stockService: StockService, private route: ActivatedRoute
-    , private spinner: NgxSpinnerService) { }
+  constructor(private stockService: StockService,
+    private eventBusService: EventBusService
+    ,private spinner: NgxSpinnerService) { }
+
   ngOnInit(): void {
-    this.spinner.show();
-    this.route.paramMap.subscribe(params => {
-      const symbol = params.get('symbol');
-      this.stockService.getQuotes(symbol).subscribe(data => {
+    this.eventBusService.symbolChanged.subscribe(symbol => {
+      this.symbol = symbol;
+      this.spinner.show();
+      this.stockService.getQuotes(this.symbol).subscribe(data => {
         this.candles = data.map(quote => Object.assign({}, quote, {
           x: new Date(quote[0]),
           y: [quote[1], quote[2], quote[3], quote[4]]
         }));
-        this.loadData(this.candles, symbol);
+        this.loadData(this.candles, this.symbol);
         this.spinner.hide();
       });
     });
@@ -60,9 +63,9 @@ export class DrawChartComponent implements OnInit {
       chart: {
         type: 'line',
         zoom: {
-          enabled: false
+          enabled: true
         },
-        height: 450
+        height: '550'
       },
       stroke: {
         curve: 'smooth',

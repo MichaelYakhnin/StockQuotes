@@ -64,6 +64,7 @@ namespace StockQuotes.Controllers
             {
                 var responseStream = await response.Content.ReadAsStringAsync();
                 var stockResponse =  JsonConvert.DeserializeObject<List<StocksResponse>>(responseStream);
+                stockResponse.RemoveRange(500, 13725);
                 return Ok(stockResponse);
             }
             else
